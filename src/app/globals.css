@@ -1,26 +1,49 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("./assets/f2-background.png");
+  background-size: cover; /* Làm hình nền vừa khít hoặc lớn hơn phần hiển thị */
+  background-repeat: no-repeat; /* Không lặp lại hình */
+  background-position: center; /* Căn giữa hình nền */
+}
+
+main {
+  width: 80vw;
+  height: 80vh;
+  background: linear-gradient(to bottom, #f8f8f8, #cfcfcf);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  color: #383838;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20vh;
+}
+
+section.populated {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: auto;
+}
+
+.starter-text {
+  padding: 0 80px;
 }

@@ -1,14 +1,16 @@
-import { TForm } from "./Form.type";
-import { StyledForm, StyledInput } from "./Form.style";
+import React from "react";
 import CustomButton from "@/components/atom/CustomButton/CustomButton";
 import CustomInputField from "@/components/atom/CustomInputField/CustomInputField";
+import { TForm } from "./Form.type";
 
-const FormComponent = ({ onSubmit }: TForm) => {
+const FormComponent = ({ onSubmit, value, onChange }: TForm) => {
   return (
-    <form action={onSubmit}>
+    <form style={{ display: "flex" }} onSubmit={onSubmit}>
       <CustomInputField
         name="message"
         placeholder="Ask F1GPT anything..."
+        value={value}
+        onChange={onChange}
         required
       />
       <CustomButton title="Submit" type="submit" />

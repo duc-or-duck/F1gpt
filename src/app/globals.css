@@ -33,7 +33,7 @@ section {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20vh;
+  gap: 3vh;
 }
 
 section.populated {

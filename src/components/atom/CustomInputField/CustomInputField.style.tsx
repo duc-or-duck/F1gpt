@@ -1,36 +1,25 @@
 import styled from "@emotion/styled";
-import Input from "@mui/material/Input";
 
-export const StyledInputField = styled(Input)(({ theme }) => ({
+export const StyledInputField = styled("input")({
   width: "85%",
   padding: "10px 16px",
   fontSize: "15px",
   borderRadius: "16px 0px 0px 16px",
-  border: `1px solid ${"#D50A0A"}`, // Màu đỏ Ferrari, điều chỉnh cho dark/light theme
-
-  "&::before, &::after": {
-    display: "none",
-  },
-
-  "& .MuiInputBase-input": {
-    padding: 0, // Loại bỏ padding mặc định
-  },
+  border: `1px solid #D50A0A`,
+  backgroundColor: "white",
 
   "&:hover": {
-    borderColor: "#FF2800", // Màu đỏ sáng hơn khi hover, lấy cảm hứng từ năng lượng F1
+    borderColor: "#FF2800",
   },
 
   "&:focus": {
-    borderColor: "#FF2800", // Màu đỏ sáng khi focus
+    borderColor: "#FF2800",
     outline: "none",
+    boxShadow: `0 0 0 2px rgba(255, 40, 0, 0.3)`,
   },
 
-  "&.Mui-focused": {
-    borderColor: "#FF2800", // Đảm bảo màu đỏ F1 khi focused
-    boxShadow: `0 0 0 2px rgba(255, 40, 0, 0.3)`, // Box-shadow với tông đỏ nhạt
+  "&:-webkit-autofill": {
+    WebkitBoxShadow: "0 0 0 1000px rgba(255, 0, 0, 0.05) inset",
+    WebkitTextFillColor: "inherit",
   },
-
-  "&.mui-auto-fill": {
-    backgroundColor: "rgba(255, 0, 0, 0.05)", // Nền đỏ nhạt cho autofill, phù hợp với chủ đề
-  },
-}));
+});

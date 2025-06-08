@@ -1,50 +1,76 @@
+"use client"; // Thêm dòng này để giải quyết lỗi RSC và export default
+
 import React from "react";
-import f1Logo from "./assets/f1-logo.png";
+import CustomBubbleLoading from "@/components/atom/BubbleLoading/BubbleLoading";
+import CustomHeader from "@/components/molecules/Header/Header";
+import PromptSection from "@/components/molecules/PromptSection/PromptSection";
+import { useChat } from "@ai-sdk/react";
+import CustomBubble from "@/components/atom/Bubble/Bubble"; // Giả sử có component này
 import FormComponent from "@/components/molecules/Form/Form";
-import Image from "next/image";
 import CustomPromptSuggestionsRows from "@/components/atom/PromptSuggestionsRows/PromptSuggestionsRows";
+import { CreateMessage } from "@ai-sdk/react";
 
-async function fetchMessages() {
-  return [];
-}
-
-export default async function Home() {
-  const messages = await fetchMessages();
-  const noMess = messages.length === 0;
-
-  // Server Action
-  const handleFormSubmit = async (formData: FormData) => {
-    "use server";
-    const message = formData.get("message")?.toString();
-    console.log("Received message:", message);
-    // Xử lý dữ liệu form ở đây (gọi API, lưu database, etc.)
+export default function Home() {
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+    append,
+  } = useChat();
+  const handlePrompt = (promText: string) => {
+    const msg: CreateMessage = {
+      id: crypto.randomUUID(),
+      content: promText,
+      role: "user",
+    };
+    append(msg);
   };
+
+  // const noMessages = !messages || messages.length === 0;
 
   return (
     <div>
       <main>
-        <Image
-          src={f1Logo} // URL từ thư mục public
-          alt="Formula 1 logo"
-          width={86}
-          height={86}
-          priority // Bị bỏ qua trong <img>
-        />
-        <section>
-          {noMess ? (
+        <CustomHeader />
+        <section className="chat-container">
+          {messages.length === 0 ? (
             <>
-              <p>
-                The Ultimate place for Formula One super fans! Ask F1GPT
-                anything about the fantastic topic of F1 racing and it will come
-                back with the most up-to-date answers. We hope you enjoy!
-              </p>
-              <br />
-              <CustomPromptSuggestionsRows />
+              <PromptSection />
+              <CustomPromptSuggestionsRows onPromptClick={handlePrompt} />
             </>
           ) : (
-            <>{/* Hiển thị tin nhắn ở đây */}</>
+            <div className="message-list">
+              {Object.values(messages).map((message, index) => (
+                <CustomBubble
+                  message={{
+                    content: message.content || "", // Adjust based on actual property
+                    role: message.role === "user" ? "user" : "assistant", // Adjust based on actual property
+                  }}
+                  key={`message-${index}`}
+                />
+              ))}
+              {isLoading && <CustomBubbleLoading />}
+            </div>
           )}
-          <FormComponent onSubmit={handleFormSubmit} />
+
+          {/* <form onSubmit={handleSubmit} className="chat-form">
+            <input
+              value={input}
+              onChange={handleInputChange}
+              placeholder="Type your message..."
+              disabled={isLoading}
+            />
+            <button type="submit" disabled={isLoading}>
+              Send
+            </button>
+          </form> */}
+          <FormComponent
+            value={input}
+            onChange={handleInputChange}
+            onSubmit={handleSubmit} // Truyền hàm mới
+          />
         </section>
       </main>
     </div>

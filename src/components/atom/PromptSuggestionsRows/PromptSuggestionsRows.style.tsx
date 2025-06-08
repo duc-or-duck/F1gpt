@@ -1,19 +1,21 @@
-import Stack from "@mui/material/Stack";
-import styled from "@emotion/styled";
+"use client";
 
-export const StylePromptSuggestionsRows = styled(Stack)(({ theme }) => ({
+import Stack from "@mui/material/Stack";
+import styled from "@emotion/styled"; // or use @mui/material/styles if preferred
+
+export const StylePromptSuggestionsRows = styled(Stack)({
   display: "flex",
-  flexDirection: "row", // Sắp xếp theo hàng, phù hợp với layout F1 (ví dụ: danh sách gợi ý)
-  gap: "16px", // Khoảng cách giữa các phần tử, lấy cảm hứng từ giao diện gọn gàng của F1
-  padding: "12px", // Padding để tạo không gian
-  backgroundColor: "#FFFFFF", // Nền đen hoặc trắng, phù hợp với F1
-  border: `1px solid #D50A0A`, // Màu đỏ Ferrari
-  borderRadius: "8px", // Bo góc nhẹ, hiện đại
+  flexDirection: "row",
+  gap: "16px",
+  padding: "12px",
+  backgroundColor: "#FFFFFF",
+  border: `1px solid #D50A0A`,
+  borderRadius: "8px",
   "& > *": {
-    transition: "transform 0.3s, opacity 0.3s", // Hiệu ứng mượt mà cho các phần tử con
+    transition: "transform 0.3s, opacity 0.3s",
     "&:hover": {
-      transform: "scale(1.05)", // Phóng to nhẹ khi hover, gợi cảm giác tốc độ
-      opacity: 0.9, // Giảm nhẹ opacity khi hover
+      transform: "scale(1.05)",
+      opacity: 0.9,
     },
   },
-}));
+});

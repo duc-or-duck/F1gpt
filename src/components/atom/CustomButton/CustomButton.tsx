@@ -1,9 +1,25 @@
-"use client"; // Optional: Use this if the component should only render on the client
+"use client";
 import { StyleButton } from "./CustomButton.style";
 import { TButton } from "./CustomButton.type";
 
-function CustomButton({ title, type = "button" }: TButton) {
-  return <StyleButton type={type}>{title}</StyleButton>;
+// Sửa kiểu TButton để loại bỏ prop color
+type CustomButtonProps = Omit<TButton, "color">;
+
+function CustomButton({
+  onClick,
+  title,
+  type = "button",
+  ...props
+}: CustomButtonProps) {
+  return (
+    <StyleButton
+      onClick={onClick}
+      type={type}
+      {...props} // Chỉ truyền các props hợp lệ
+    >
+      {title}
+    </StyleButton>
+  );
 }
 
 export default CustomButton;

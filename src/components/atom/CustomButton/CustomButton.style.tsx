@@ -1,8 +1,6 @@
-// src/components/atom/CustomButton/CustomButton.style.tsx
 import styled from "@emotion/styled";
-import Button from "@mui/material/Button";
 
-export const StyleButton = styled(Button)({
+export const StyleButton = styled.button({
   width: "15%",
   backgroundColor: "#a80001",
   color: "white",

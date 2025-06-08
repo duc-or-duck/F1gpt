@@ -1,16 +1,16 @@
 import InputBase from "@mui/material/InputBase";
 import styled from "@emotion/styled";
 
-export const StyledForm = styled("form")(({ theme }) => ({
+export const StyledForm = styled("form")({
   height: "50px",
   width: "100%",
   display: "flex",
   borderTop: "#828282 solid 2px",
   borderRadius: "16px",
   overflow: "hidden",
-}));
+});
 
-export const StyledInput = styled(InputBase)(({ theme }) => ({
+export const StyledInput = styled(InputBase)({
   width: "85%",
   padding: "10px 16px",
   fontSize: "15px",
@@ -42,4 +42,4 @@ export const StyledInput = styled(InputBase)(({ theme }) => ({
   ".mui-auto-fill": {
     backgroundColor: "red",
   },
-}));
+});
